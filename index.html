@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Learning Roadmap - LinkedIn Post</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0077b5 0%, #00405d 100%);
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: auto;
+        }
+        
+        .linkedin-post {
+            width: 100vw;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #0077b5 0%, #004182 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            flex-shrink: 0;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="10" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="60" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .main-title {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            z-index: 2;
+            position: relative;
+        }
+        
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            opacity: 0.9;
+            z-index: 2;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-text {
+            font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+            background: rgba(255,255,255,0.2);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            display: inline-block;
+            z-index: 2;
+            position: relative;
+        }
+        
+        /* Roadmap Container */
+        .roadmap-container {
+            padding: 2rem;
+            flex: 1;
+            overflow: auto;
+        }
+        
+        .roadmap {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        /* Connection Lines - adjusted for responsive grid */
+        .roadmap::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(90deg, transparent 0%, #e0e6ed 45%, #e0e6ed 55%, transparent 100%),
+                linear-gradient(0deg, transparent 0%, #e0e6ed 45%, #e0e6ed 55%, transparent 100%);
+            background-size: 100% 20%, 20% 100%;
+            background-repeat: no-repeat;
+            z-index: 1;
+            opacity: 0.3;
+        }
+        
+        .step {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 3px solid transparent;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 200px;
+        }
+        
+        .step:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .step:nth-child(1), .step:nth-child(4), .step:nth-child(7), .step:nth-child(10) {
+            border-color: #0077b5;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
+        }
+        
+        .step:nth-child(2), .step:nth-child(5), .step:nth-child(8), .step:nth-child(11) {
+            border-color: #e74c3c;
+            background: linear-gradient(135deg, #ffffff 0%, #fff5f5 100%);
+        }
+        
+        .step:nth-child(3), .step:nth-child(6), .step:nth-child(9) {
+            border-color: #f39c12;
+            background: linear-gradient(135deg, #ffffff 0%, #fffbf0 100%);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0077b5, #004182);
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,119,181,0.4);
+        }
+        
+        .step:nth-child(2) .step-number, .step:nth-child(5) .step-number, .step:nth-child(8) .step-number, .step:nth-child(11) .step-number {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            box-shadow: 0 4px 12px rgba(231,76,60,0.4);
+        }
+        
+        .step:nth-child(3) .step-number, .step:nth-child(6) .step-number, .step:nth-child(9) .step-number {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            box-shadow: 0 4px 12px rgba(243,156,18,0.4);
+        }
+        
+        .step-title {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            margin-top: 0.8rem;
+            line-height: 1.2;
+        }
+        
+        .step-description {
+            font-size: clamp(0.85rem, 1.2vw, 1rem);
+            color: #555;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        
+        .tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tool {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 12px;
+            font-size: clamp(0.7rem, 1vw, 0.85rem);
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+            flex-shrink: 0;
+        }
+        
+        .hashtags {
+            margin-top: 0.8rem;
+            font-size: clamp(0.8rem, 1vw, 0.95rem);
+            opacity: 0.8;
+            word-wrap: break-word;
+        }
+        
+        /* Progress Indicator */
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #0077b5 0%, #e74c3c 50%, #f39c12 100%);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .roadmap {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .header {
+                padding: 1.5rem 1rem;
+            }
+            
+            .roadmap-container {
+                padding: 1rem;
+            }
+            
+            .step {
+                padding: 1.2rem;
+                min-height: 180px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .step {
+                min-height: 160px;
+                padding: 1rem;
+            }
+            
+            .step-number {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="linkedin-post">
+        <!-- Header -->
+        <div class="header">
+            <div class="main-title">🚀 My DevOps Learning Journey</div>
+            <div class="subtitle">From Beginner to Cloud Expert - 11 Essential Steps</div>
+            <div class="cta-text">💡 Join me on this journey! Share your experiences & advice below 👇</div>
+        </div>
+        
+        <!-- Roadmap -->
+        <div class="roadmap-container">
+            <div class="roadmap">
+                <!-- Step 1 -->
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Linux System Administration</div>
+                    <div class="step-description">Build rock-solid foundation in Linux OS, file systems, permissions, process management, and advanced text editing</div>
+                    <div class="tools">
+                        <span class="tool">Ubuntu/CentOS</span>
+                        <span class="tool">Vim/Nano</span>
+                        <span class="tool">SSH</span>
+                        <span class="tool">Cron</span>
+                        <span class="tool">Systemd</span>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Shell Scripting & Automation</div>
+                    <div class="step-description">Master Bash scripting, create reusable functions, handle errors, and automate repetitive system tasks</div>
+                    <div class="tools">
+                        <span class="tool">Bash/Zsh</span>
+                        <span class="tool">AWK/SED</span>
+                        <span class="tool">RegEx</span>
+                        <span class="tool">Crontab</span>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Full-Stack Development</div>
+                    <div class="step-description">Build enterprise-grade web applications using Java Spring Boot and Python Django/Flask with REST APIs</div>
+                    <div class="tools">
+                        <span class="tool">Java Spring</span>
+                        <span class="tool">Python Flask</span>
+                        <span class="tool">REST APIs</span>
+                        <span class="tool">Tomcat</span>
+                        <span class="tool">Maven</span>
+                    </div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Version Control & Collaboration</div>
+                    <div class="step-description">Master Git workflows, branching strategies, pull requests, code reviews, and collaborative development practices</div>
+                    <div class="tools">
+                        <span class="tool">Git</span>
+                        <span class="tool">GitHub Actions</span>
+                        <span class="tool">GitLab</span>
+                        <span class="tool">Bitbucket</span>
+                        <span class="tool">Git Flow</span>
+                    </div>
+                </div>
+                
+                <!-- Step 5 -->
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-title">Agile & DevOps Culture</div>
+                    <div class="step-description">Understand SDLC methodologies, Agile/Scrum practices, DevOps principles, and collaborative team dynamics</div>
+                    <div class="tools">
+                        <span class="tool">Jira</span>
+                        <span class="tool">Confluence</span>
+                        <span class="tool">Scrum</span>
+                        <span class="tool">Kanban</span>
+                        <span class="tool">Slack</span>
+                    </div>
+                </div>
+                
+                <!-- Step 6 -->
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-title">CI/CD Pipeline Engineering</div>
+                    <div class="step-description">Build automated testing, integration, and deployment pipelines with quality gates and rollback strategies</div>
+                    <div class="tools">
+                        <span class="tool">Jenkins</span>
+                        <span class="tool">GitHub Actions</span>
+                        <span class="tool">GitLab CI</span>
+                        <span class="tool">SonarQube</span>
+                        <span class="tool">Nexus</span>
+                    </div>
+                </div>
+                
+                <!-- Step 7 -->
+                <div class="step">
+                    <div class="step-number">7</div>
+                    <div class="step-title">AWS Cloud Engineering</div>
+                    <div class="step-description">Master cloud-native development with AWS services, serverless architecture, and managed DevOps solutions</div>
+                    <div class="tools">
+                        <span class="tool">CodeCommit</span>
+                        <span class="tool">CodeBuild</span>
+                        <span class="tool">CodePipeline</span>
+                        <span class="tool">Lambda</span>
+                        <span class="tool">S3</span>
+                        <span class="tool">EC2</span>
+                    </div>
+                </div>
+                
+                <!-- Step 8 -->
+                <div class="step">
+                    <div class="step-number">8</div>
+                    <div class="step-title">Infrastructure as Code (IaC)</div>
+                    <div class="step-description">Provision scalable, secure cloud infrastructure using Terraform with networking, security groups, and compliance</div>
+                    <div class="tools">
+                        <span class="tool">Terraform</span>
+                        <span class="tool">CloudFormation</span>
+                        <span class="tool">Ansible</span>
+                        <span class="tool">Vault</span>
+                        <span class="tool">Packer</span>
+                    </div>
+                </div>
+                
+                <!-- Step 9 -->
+                <div class="step">
+                    <div class="step-number">9</div>
+                    <div class="step-title">Container Orchestration</div>
+                    <div class="step-description">Master containerization, microservices architecture, and production-grade Kubernetes deployment on AWS EKS</div>
+                    <div class="tools">
+                        <span class="tool">Docker</span>
+                        <span class="tool">Kubernetes</span>
+                        <span class="tool">EKS</span>
+                        <span class="tool">Helm</span>
+                        <span class="tool">Istio</span>
+                    </div>
+                </div>
+                
+                <!-- Step 10 -->
+                <div class="step">
+                    <div class="step-number">10</div>
+                    <div class="step-title">Observability & SRE</div>
+                    <div class="step-description">Implement comprehensive monitoring, logging, alerting, and Site Reliability Engineering practices</div>
+                    <div class="tools">
+                        <span class="tool">Prometheus</span>
+                        <span class="tool">Grafana</span>
+                        <span class="tool">ELK Stack</span>
+                        <span class="tool">Jaeger</span>
+                        <span class="tool">PagerDuty</span>
+                    </div>
+                </div>
+                
+                <!-- Step 11 -->
+                <div class="step">
+                    <div class="step-number">11</div>
+                    <div class="step-title">MLOps & AI Engineering</div>
+                    <div class="step-description">Apply DevOps principles to ML workflows with automated model training, validation, deployment, and monitoring</div>
+                    <div class="tools">
+                        <span class="tool">MLflow</span>
+                        <span class="tool">Kubeflow</span>
+                        <span class="tool">SageMaker</span>
+                        <span class="tool">DVC</span>
+                        <span class="tool">Airflow</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div>🤝 <strong>Let's Learn Together!</strong> What's your DevOps learning experience? Any tools or steps I should add?</div>
+            <div class="hashtags">#DevOps #CloudComputing #AWS #Docker #Kubernetes #Terraform #CI/CD #MLOps #TechCommunity #LearningInPublic</div>
+        </div>
+        
+        <div class="progress-bar"></div>
+    </div>
+</body>
+</html>
